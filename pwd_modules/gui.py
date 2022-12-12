@@ -71,6 +71,7 @@ class Chico_app:
         self.window.quit()
         self.window.destroy()
         exit()
+        self.scr.clipboard_clear()
 
     def openbrowser(self, url):
         webbrowser.open_new(url)
@@ -116,21 +117,21 @@ class Chico_app:
 
         # ScrolledText configuration
         self.label2 = tk.Label(master, text="Generated Passwords", font=self.scroll_title, fg='blue')
-        self.label2.grid(column=0, row=3, padx=10, pady=1, sticky="W")
+        self.label2.grid(column=0, row=1, padx=10, pady=1, sticky="W")
         self.scr = scrolledtext.ScrolledText(master, width=50, height=10, wrap=tk.WORD, font=self.scroll_font)
-        self.scr.grid(column=0, columnspan=2, row=4, padx=10, pady=5)
+        self.scr.grid(column=0, columnspan=2, row=2, padx=10, pady=5)
 
         # Buttons configuration
         self.action = tk.Button(master, text="Generate and copy to clipboard", bg='#0052cc', fg='#ffffff',
                                 activebackground='#9999FF', font=self.bt_font, command=self.generate)
-        self.action.grid(column=1, row=5, padx=10, pady=10, sticky="E")
+        self.action.grid(column=1, row=3, padx=10, pady=10, sticky="E")
         self.action2 = tk.Button(master, text="Clear", bg='#0052cc', fg='#ffffff', activebackground='#9999FF',
                                  font=self.bt_font, command=self.clean())
-        self.action2.grid(column=0, row=5, padx=10, pady=10, sticky="W")
+        self.action2.grid(column=0, row=3, padx=10, pady=10, sticky="W")
 
-        # Footer
+        # Link
         self.ft = tk.Label(master, text="https://haveibeenpwned.com/", font=self.link_font, fg="blue", cursor="hand2")
-        self.ft.grid(column=1, row=3, padx=10, pady=1, sticky="NE")
+        self.ft.grid(column=1, row=1, padx=10, pady=1, sticky="NE")
         self.ft.bind("<Button-1>", lambda action: self.openbrowser("https://haveibeenpwned.com/"))
 
         # Menu bar
