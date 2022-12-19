@@ -7,7 +7,7 @@ from tkinter import font
 import webbrowser
 from pwd_modules import PWD_string as gen
 from pwd_modules import pass_gen as pwd_gen
-
+import sys
 
 class Chico_app:
     def generate(self):
@@ -68,10 +68,11 @@ class Chico_app:
         messagebox.showinfo(title="Data was appended to file", message="Success!")
 
     def _quit(self):
+        self.clean()
         self.window.quit()
         self.window.destroy()
         exit()
-        self.scr.clipboard_clear()
+
 
     def openbrowser(self, url):
         webbrowser.open_new(url)
@@ -154,5 +155,12 @@ class Chico_app:
         # Window settings
         master.title("Chico - Password generator")
         master.resizable(False, False)
-        master.iconbitmap(r'.\chico-icon.ico')
+        
+        if ( sys.platform.startswith('win')):
+            master.iconbitmap('.\chico-icon.ico')
+        else:
+            icon = tk.PhotoImage(file='chico-icon.png')
+            master.tk.call('wm', 'iconphoto', master._w, icon)
+        
         master.eval('tk::PlaceWindow . center')
+
